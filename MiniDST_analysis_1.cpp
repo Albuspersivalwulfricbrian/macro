@@ -13,7 +13,7 @@
 #include <TGraphErrors.h>
 #include "ChannelEntry.h"
 #include "CHSH_calculator.h"
-#include "CHSH_calculator_class.h"
+#include "CHSH_class.h"
 #include <string.h>
 #include "Check_entanglement_cuts.h"
 #include "like_ivashkin_wants_it.h"
@@ -21,10 +21,9 @@ using namespace std;
 using namespace CHSH;
 using namespace CUTS;
 
-#define UseDecoherentPhotons 1
-#define Analyze_Monte_Carlo 0
+#define UseDecoherentPhotons 0
 #define UseNoCutG 1
-#define UseTimeCut 1
+#define UseTimeCut 0
 
 
 void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_spline/entangled/")
@@ -204,11 +203,6 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
         Short_t num1 = short_tree->DetNum1;
         //cout << num0 << " "<<num1<<endl;
 
-        #if Analyze_Monte_Carlo
-        num0-- ; num1--;
-        //&& short_tree->EdepIntermediate == 0
-
-        #endif
         if(short_tree->EdepDet1 > low_det1_cut
         && short_tree->EdepDet1 < high_det1_cut
         && short_tree->EdepScat1 > low_scat1_cut
