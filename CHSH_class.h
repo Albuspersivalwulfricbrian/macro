@@ -1,3 +1,5 @@
+#ifndef CHSH_CLASS
+#define CHSH_CLASS
 class CHSH_class
 {
     private:
@@ -65,3 +67,4 @@ class CHSH_class
     Float_t* Get_total_Correlation_E_all();
     Float_t* Get_total_Corr_error_all();    
 };
+#endif CHSH_CLASS

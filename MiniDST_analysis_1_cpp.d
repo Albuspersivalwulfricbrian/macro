@@ -6,14 +6,15 @@
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TAxis.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TNamed.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TObject.h
-./MiniDST_analysis_1_cpp.so: /home/doc/root/include/RConfigure.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/Rtypes.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/RtypesCore.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ROOT/RConfig.hxx
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/RVersion.h
+./MiniDST_analysis_1_cpp.so: /home/doc/root/include/RConfigure.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/DllImport.h
-./MiniDST_analysis_1_cpp.so: /home/doc/root/include/snprintf.h
+./MiniDST_analysis_1_cpp.so: /home/doc/root/include/strtok.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/strlcpy.h
+./MiniDST_analysis_1_cpp.so: /home/doc/root/include/snprintf.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TGenericClassInfo.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TSchemaHelper.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TIsAProxy.h
@@ -24,8 +25,6 @@
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TString.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TMathBase.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ROOT/RStringView.hxx
-./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ROOT/RWrap_libcpp_string_view.h
-./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ROOT/libcpp_string_view.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ROOT/TypeTraits.hxx
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TAttAxis.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TArrayD.h
@@ -38,18 +37,17 @@
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TArrayI.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TArrayF.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/Foption.h
-./MiniDST_analysis_1_cpp.so: /home/doc/root/include/Fit/FitExecutionPolicy.h
+./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ROOT/EExecutionPolicy.hxx
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TVectorFfwd.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TVectorDfwd.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TFitResultPtr.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TF1.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TFormula.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TBits.h
-./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TMethodCall.h
-./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TDictionary.h
-./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ESTLType.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TInterpreter.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TDataType.h
+./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TDictionary.h
+./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ESTLType.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TInterpreterValue.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TVirtualRWMutex.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TVirtualMutex.h
@@ -177,12 +175,14 @@
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/VecCore/Backend/SIMDSizes.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/VecCore/Backend/Vc.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/VecCore/Backend/VcScalar.h
+./MiniDST_analysis_1_cpp.so: /home/doc/root/include/VecCore/Backend/VcVector.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/VecCore/Backend/VcSimdArray.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/VecCore/Backend/UMESimd.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/VecCore/Backend/UMESimdArray.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/VecCore/Limits.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/VecCore/VecMath.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/VecCore/Utilities.h
+./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TMethodCall.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TF1AbsComposition.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TMath.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TError.h
@@ -196,13 +196,14 @@
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TSeqCollection.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TCollection.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TIterator.h
+./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ROOT/RRangeCast.hxx
+./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ROOT/RSpan.hxx
+./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ROOT/span.hxx
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TVirtualQConnection.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/GuiTypes.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/Buttons.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TAttBBox2D.h
-./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TPoint.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TAttCanvas.h
-./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TCanvasImp.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TROOT.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TDirectory.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TClass.h
@@ -215,8 +216,6 @@
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TDirectoryFile.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TDatime.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TUrl.h
-./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TMap.h
-./MiniDST_analysis_1_cpp.so: /home/doc/root/include/THashTable.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ROOT/RConcurrentHashColl.hxx
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ROOT/TRWSpinLock.hxx
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/ROOT/TSpinMutex.hxx
@@ -232,12 +231,11 @@
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TMatrixFBasefwd.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TMatrixDBasefwd.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TGraphErrors.h
-./MiniDST_analysis_1_cpp.so: ChannelEntry.h CHSH_calculator.h
-./MiniDST_analysis_1_cpp.so: CHSH_calculator_class.h
+./MiniDST_analysis_1_cpp.so: ChannelEntry.h CHSH_calculator.h CHSH_class.h
 ./MiniDST_analysis_1_cpp.so: Check_entanglement_cuts.h TreeStructures.h
 ./MiniDST_analysis_1_cpp.so: like_ivashkin_wants_it.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TStyle.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TAttText.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/TColor.h
 ./MiniDST_analysis_1_cpp.so: /home/doc/root/include/RVersion.h /home/doc/root/include/RConfig.h /home/doc/root/include/TClass.h /home/doc/root/include/TDictAttributeMap.h /home/doc/root/include/TInterpreter.h /home/doc/root/include/TROOT.h /home/doc/root/include/TBuffer.h /home/doc/root/include/TMemberInspector.h /home/doc/root/include/TError.h /home/doc/root/include/RtypesImp.h /home/doc/root/include/TIsAProxy.h /home/doc/root/include/TFileMergeInfo.h /home/doc/root/include/TCollectionProxyInfo.h /home/doc/root/bin/rootcling
-MiniDST_analysis_1_cpp__ROOTBUILDVERSION= 6.22/06
+MiniDST_analysis_1_cpp__ROOTBUILDVERSION= 6.26/00

@@ -23,7 +23,7 @@ using namespace CUTS;
 
 #define UseDecoherentPhotons 0
 #define UseNoCutG 1
-#define UseTimeCut 0
+#define UseTimeCut 1
 
 
 void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_spline/entangled/")
@@ -207,18 +207,22 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
         && short_tree->EdepDet1 < high_det1_cut
         && short_tree->EdepScat1 > low_scat1_cut
         && short_tree->EdepScat1 < high_scat1_cut 
+        && short_tree->EdepScat0 +short_tree->EdepDet0 + short_tree->EdepIntermediate > 410
+        && short_tree->EdepScat0 +short_tree->EdepDet0 + short_tree->EdepIntermediate < 600
+        
+
 #if UseNoCutG
         && short_tree->EdepDet0 > low_det0_cut
         && short_tree->EdepDet0 < high_det0_cut        
         && short_tree->EdepScat0 > low_scat0_cut
         && short_tree->EdepScat0 < high_scat0_cut
 #else
-        // && short_tree->EdepDet0 < 340
-        // && short_tree->EdepDet0 > 200 
-        // && short_tree->EdepIntermediate > 0
-        // && short_tree->EdepIntermediate < 40
+        && short_tree->EdepDet0 < 340
+        && short_tree->EdepDet0 > 260 
+        && short_tree->EdepIntermediate > 40
+        && short_tree->EdepIntermediate < 110
 
-        && cutg->IsInside(short_tree->EdepDet0,short_tree->EdepIntermediate)
+        //&& cutg->IsInside(short_tree->EdepDet0,short_tree->EdepIntermediate)
         
 #endif 
 
@@ -226,6 +230,8 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
         && time_tree->TimeScat1-time_tree->TimeScat0 > -3
         && time_tree->TimeScat1-time_tree->TimeScat0 < 6        
         && time_tree->TimeDet0-time_tree->TimeScat0 > low_time_cut[num0]
+        && time_tree->TimeDet1-time_tree->TimeScat1 > low_time_cut[num1]
+        && time_tree->TimeDet0-time_tree->TimeScat0 < high_time_cut[num0]
         && time_tree->TimeDet1-time_tree->TimeScat1 < high_time_cut[num1]
         #endif
 
