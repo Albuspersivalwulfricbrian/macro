@@ -21,12 +21,12 @@ using namespace std;
 using namespace CHSH;
 using namespace CUTS;
 
-#define UseDecoherentPhotons 0
-#define UseNoCutG 1
+#define UseDecoherentPhotons 1
+#define UseNoCutG 0
 #define UseTimeCut 1
 
 
-void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_spline/entangled/")
+void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_spline/decoherent/")
 {
     const Int_t module_angles = 8;
     const Int_t all_angles = module_angles*2;
@@ -209,7 +209,8 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
         && short_tree->EdepScat1 < high_scat1_cut 
         && short_tree->EdepScat0 +short_tree->EdepDet0 + short_tree->EdepIntermediate > 410
         && short_tree->EdepScat0 +short_tree->EdepDet0 + short_tree->EdepIntermediate < 600
-        
+        && short_tree->EdepScat1 +short_tree->EdepDet1 > 410
+        && short_tree->EdepScat1 +short_tree->EdepDet1 < 600        
 
 #if UseNoCutG
         && short_tree->EdepDet0 > low_det0_cut
@@ -218,9 +219,9 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
         && short_tree->EdepScat0 < high_scat0_cut
 #else
         && short_tree->EdepDet0 < 340
-        && short_tree->EdepDet0 > 260 
-        && short_tree->EdepIntermediate > 40
-        && short_tree->EdepIntermediate < 110
+        && short_tree->EdepDet0 > 180
+        && short_tree->EdepIntermediate > 2
+        && short_tree->EdepIntermediate < 100
 
         //&& cutg->IsInside(short_tree->EdepDet0,short_tree->EdepIntermediate)
         
@@ -267,6 +268,7 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
 /////////////////////
 /////////////////////CHSH inequality and Correlation coefficients
         TF1 *my_fit = new TF1 ("my_fit","[0]*(cos(6*3.141593/180*x)-3*cos(2*3.141593/180*x))",-190,190);
+        my_fit->SetLineWidth(3);
         TF1 *e_fit = new TF1("e_fit","[0]*(cos(2*3.141593/180*x))",-190,190);
 
 
@@ -290,6 +292,7 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
     }
     sigma_E_average = sqrt(sigma_E_average)/32;
     TCanvas *canvas_CHSH = new TCanvas ( "canvas_CHSH", "canvas_CHSH");
+    canvas_CHSH->SetFrameLineWidth(2);
     canvas_CHSH->Divide(2);
 
     TGraphErrors * gr_CHSH = new TGraphErrors(module_angles,phi_angle,CHSH_cl.Get_CHSH(), angle_arr_err, CHSH_cl.Get_CHSH_error());
@@ -297,7 +300,7 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
     Float_t a_par_CHSH = abs(my_fit->GetParameter(0));
     Float_t a_error_CHSH = abs(my_fit->GetParError(0));
     canvas_CHSH->cd(1);
-    graph_like_ivashkin_wants_it(gr_CHSH,"angle [degrees]","S", Form("Average E <> E(90) = %4.3f+-%4.3f",average_E,sigma_E_average),1);
+    graph_like_ivashkin_wants_it(gr_CHSH,"azimuthal angle #phi (degrees)","S-function", Form("Average E <> E(90) = %4.3f+-%4.3f",average_E,sigma_E_average),1);
     gr_CHSH->Draw("AP");
 
     TGraphErrors * gr_CHSH_all = new TGraphErrors(all_angles-1,phi_angle,CHSH_cl.Get_CHSH_all(), angle_arr_err, CHSH_cl.Get_CHSH_error_all());
@@ -305,7 +308,7 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
     a_par_CHSH = abs(my_fit->GetParameter(0));
     a_error_CHSH = abs(my_fit->GetParError(0));
     canvas_CHSH->cd(2);
-    graph_like_ivashkin_wants_it(gr_CHSH_all,"angle [degrees]","S", Form("Average E <> E(90) = %4.3f+-%4.3f",average_E,sigma_E_average),1);
+    graph_like_ivashkin_wants_it(gr_CHSH_all,"azimuthal angle #phi (degrees)","S-function", Form("Average E <> E(90) = %4.3f+-%4.3f",average_E,sigma_E_average),1);
     gr_CHSH_all->Draw("AP");
     gr_CHSH_all->Write();    
     canvas_CHSH->SaveAs(result_path+".pdf",".pdf");
@@ -318,7 +321,7 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
     a_par_CHSH = abs(my_fit->GetParameter(0));
     a_error_CHSH = abs(my_fit->GetParError(0));
     global_canvas_CHSH->cd(1);
-    graph_like_ivashkin_wants_it(global_gr_CHSH,"angle [degrees]","S", Form("Sum N <> E(90) = %4.3f+-%4.3f",global_E_coeff(4,NumEvents,"both"), sqrt(global_sqr_E_error(4,NumEvents, "both"))),1);
+    graph_like_ivashkin_wants_it(global_gr_CHSH,"azimuthal angle #Delta#phi (degrees)","S", Form("Sum N <> E(90) = %4.3f+-%4.3f",global_E_coeff(4,NumEvents,"both"), sqrt(global_sqr_E_error(4,NumEvents, "both"))),1);
     global_gr_CHSH->Draw("AP");
     
     TGraphErrors * global_gr_CHSH_all = new TGraphErrors(all_angles-1,phi_angle,CHSH_cl.Get_global_CHSH_all(), angle_arr_err, CHSH_cl.Get_global_CHSH_error_all());
@@ -327,7 +330,7 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
     a_par_CHSH = abs(my_fit->GetParameter(0));
     a_error_CHSH = abs(my_fit->GetParError(0));
     global_canvas_CHSH->cd(2);
-    graph_like_ivashkin_wants_it(global_gr_CHSH_all,"angle [degrees]","S", Form("Sum N <> E(90) = %4.3f+-%4.3f",global_E_coeff(4,NumEvents,"both"), sqrt(global_sqr_E_error(4,NumEvents, "both"))),1);
+    graph_like_ivashkin_wants_it(global_gr_CHSH_all,"azimuthal angle #Delta#phi (degrees)","S", Form("Sum N <> E(90) = %4.3f+-%4.3f",global_E_coeff(4,NumEvents,"both"), sqrt(global_sqr_E_error(4,NumEvents, "both"))),1);
     
     global_gr_CHSH_all->Draw("AP");
     global_gr_CHSH_all->Write();
@@ -340,13 +343,13 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
     TGraphErrors * E_gr = new TGraphErrors(module_angles,phi_angle,CHSH_cl.Get_global_Correlation_E(), angle_arr_err, CHSH_cl.Get_global_Corr_error());
     E_gr->Fit("e_fit","R");
     E_canv->cd(1);
-    graph_like_ivashkin_wants_it(E_gr,"angle [degrees]","E", "Average E for mirroring angles", 1);
+    graph_like_ivashkin_wants_it(E_gr,"azimuthal angle #Delta#phi (degrees)","E", "Average E for mirroring angles", 1);
     E_gr->Draw("AP");
 
     TGraphErrors * E_gr_all = new TGraphErrors(all_angles-1,phi_angle,CHSH_cl.Get_global_Correlation_E_all(), angle_arr_err, CHSH_cl.Get_global_Corr_error_all());
     E_gr_all->Fit("e_fit","R");
     E_canv->cd(2);
-    graph_like_ivashkin_wants_it(E_gr_all,"angle [degrees]","E", "Average E for all angles", 1);
+    graph_like_ivashkin_wants_it(E_gr_all,"azimuthal angle #Delta#phi (degrees)","E", "Average E for all angles", 1);
     E_gr_all->Draw("AP");
     E_gr_all->Write();    
     E_canv->SaveAs(result_path+".pdf",".pdf");
@@ -356,13 +359,13 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
     TGraphErrors * E_gr_total = new TGraphErrors(module_angles,phi_angle, CHSH_cl.Get_total_Correlation_E(), angle_arr_err, CHSH_cl.Get_total_Corr_error());
     E_gr_total->Fit("e_fit","R");
     E_total->cd(1);
-    graph_like_ivashkin_wants_it(E_gr_total,"angle [degrees]","E", "Summ E for mirroring angles", 1);
+    graph_like_ivashkin_wants_it(E_gr_total,"azimuthal angle #Delta#phi (degrees)","E", "Summ E for mirroring angles", 1);
     E_gr_total->Draw("AP");
 
     TGraphErrors * E_gr_all_total = new TGraphErrors(all_angles-1,phi_angle, CHSH_cl.Get_total_Correlation_E_all(), angle_arr_err, CHSH_cl.Get_total_Corr_error_all());
     E_gr_all_total->Fit("e_fit","R");
     E_total->cd(2);
-    graph_like_ivashkin_wants_it(E_gr_all_total,"angle [degrees]","E", "Summ E for all angles", 1);
+    graph_like_ivashkin_wants_it(E_gr_all_total,"azimuthal angle #Delta#phi (degrees)","E", "Summ E for all angles", 1);
     E_gr_all_total->Draw("AP");
     E_gr_all_total->Write();
     E_total->SaveAs(result_path+".pdf",".pdf");
@@ -374,6 +377,7 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
 
     TGraphErrors * gr = new TGraphErrors(16,angle_arr,total_events_for_angle_diff, angle_arr_err, total_events_for_angle_diff_err);
 	TF1 *sin_fit = new TF1 ("sin_fit","[0]+[1]*cos(3.14159265359/180*2*x)",-10,360);
+    sin_fit->SetLineWidth(3);
 	gr->Fit("sin_fit","R");
     Float_t a_par = abs(sin_fit->GetParameter(0));
     Float_t b_par = abs(sin_fit->GetParameter(1));
@@ -385,7 +389,7 @@ void MiniDST_analysis_1(TString source_path = "/home/doc/entanglement/with_splin
 
     TCanvas *canvas = new TCanvas ( "canvas", "canvas");
     canvas->cd();
-    graph_like_ivashkin_wants_it(gr,"angle [degrees]","Counts", Form("%5.1f-%5.1f*cos(2x) ratio = %4.3f +- %4.3f",a_par,b_par,diff,diff_err),1);
+    graph_like_ivashkin_wants_it(gr,"azimuthal angle #Delta#phi (degrees)","Counts", Form("%5.1f-%5.1f*cos(2x) ratio = %4.3f +- %4.3f",a_par,b_par,diff,diff_err),1);
     gr->Draw("AP");
     gr->Write();
     canvas->SaveAs(result_path+".pdf)",".pdf");    

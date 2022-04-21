@@ -25,12 +25,12 @@ void graph_like_ivashkin_wants_it(TGraph *graph_central,  TString XTitle="", TSt
 
         graph_central->GetYaxis()->SetMaxDigits(4);        
 		
-        graph_central->GetXaxis()->SetLabelSize(0.04);        
-        graph_central->GetYaxis()->SetLabelSize(0.04);        
-		graph_central->GetXaxis()->SetTitleSize(0.045);        
-    	graph_central->GetYaxis()->SetTitleSize(0.045);
+        graph_central->GetXaxis()->SetLabelSize(0.06);        
+        graph_central->GetYaxis()->SetLabelSize(0.06);        
+		graph_central->GetXaxis()->SetTitleSize(0.06);        
+    	graph_central->GetYaxis()->SetTitleSize(0.06);
         graph_central->SetMarkerStyle(22); 
-	graph_central->SetMarkerSize(2);
+	graph_central->SetMarkerSize(6);
 	graph_central->SetMarkerColor(marker_color);
 		graph_central->GetYaxis()->SetLabelOffset(0.01);
 		graph_central->GetXaxis()->SetLabelOffset(0.01);
@@ -58,10 +58,10 @@ void hist_like_ivashkin_wants_it(TH1 *graph_central, TString XTitle, TString YTi
         graph_central->GetXaxis()->SetTitle(XTitle);
         graph_central->GetYaxis()->SetTitle(YTitle);
         //graph_central->GetXaxis()->SetRangeUser(Xminimum,Xmaximum);
-        graph_central->GetXaxis()->SetLabelSize(0.04);        
-        graph_central->GetYaxis()->SetLabelSize(0.04);        
-		graph_central->GetXaxis()->SetTitleSize(0.045);        
-    	graph_central->GetYaxis()->SetTitleSize(0.045);
+        graph_central->GetXaxis()->SetLabelSize(0.06);        
+        graph_central->GetYaxis()->SetLabelSize(0.06);        
+		graph_central->GetXaxis()->SetTitleSize(0.06);        
+    	graph_central->GetYaxis()->SetTitleSize(0.06);
         graph_central->SetMarkerStyle(2); 
         graph_central->GetYaxis()->SetMaxDigits(4);        
 

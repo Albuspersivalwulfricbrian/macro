@@ -152,6 +152,19 @@ struct ChannelEntry {
         for (Int_t i = 0; i < wf_size; i++) wf[i] = wf1[i];
     }    
 
+    void  CalculateC()
+    {
+        const Float_t Diff_window = 4;
+        Short_t wf1[MAX_N_SAMPLES] = {0};
+        for (Int_t i = 0; i < wf_size; i++)
+        {
+            Int_t il=i-Diff_window; Int_t ir=i+Diff_window;
+            if (il<0) il=0;
+            if (ir>wf_size-1) ir=wf_size-1;
+            wf1[i]=(Short_t)((wf[ir]-wf[il])/(ir-il));
+        }
+    } 
+
     void FindDiffWfPars(Short_t &min_diff, Short_t &min_time, Short_t &max_diff, Short_t &max_time, Int_t GATE_BEG = 55, Int_t GATE_END = 76)
     {
         //Int_t vmin = numeric_limits<Int_t>::max();
@@ -289,7 +302,7 @@ struct ChannelEntry {
 
         UShort_t amp = numeric_limits<UShort_t>::min();
         for (int s=GATE_BEG; s < CH_GATE_END; ++s) {
-            Short_t v =  zero_level - wf[s];
+            UShort_t v =  zero_level - wf[s];
             if (v > amp) {amp = v;}
         }
         return amp;

@@ -35,16 +35,16 @@ using namespace CUTS;
 #define calculate_CHSH 0
 
 /////////////////////////////////////////////////////
-void Create_mini_tree()
+void onearmtree()
 {
     const Int_t events_divider = 1;
 	gStyle->SetOptFit(1);
 	//gStyle->SetOptStat(1111);
 	//TString source_path = "/home/doc/entanglement/root_files_data/with_scatterer/big_file/";
-	TString source_path = "/home/doc/entanglement/with_spline/entangled/";
+	TString source_path = "/home/doc/entanglement/with_spline/decoherent/";
 
 #if UseNotEntangledPhotons
-    TString result_path  = source_path + "decoh_mini_tree";
+    TString result_path  = source_path + "onearmtree";
     const Bool_t entangled = kFALSE;
 #else
     TString result_path = source_path + "entangled_mini_tree";
@@ -553,13 +553,13 @@ void Create_mini_tree()
         }
 
         if (NumEvent%100000 == 0) cout << counter_1 << " " << counter_2 << endl;
-        if((counter_1 == 1 && counter_2 == 1) && (counter_1 < 2 && counter_2 < 2))
+        if((counter_1 == 1 && counter_2 <= 1) && (counter_1 < 2 && counter_2 < 2))
         {        
             Int_t channel_number = ch1; Int_t channel_number_2 = ch2;
             if(
             Apply_Amplitude_Saturation_cuts(short_channel_info, channel_number, channel_number_2)
             && Apply_time_in_peak_cuts(short_channel_info, channel_number, 32)
-            && Apply_time_in_peak_cuts(short_channel_info, channel_number_2, 33)
+            //&& Apply_time_in_peak_cuts(short_channel_info, channel_number_2, 33)
             #if PresentIntermediate
             && Decoherent_or_Entangled(short_channel_info,entangled)
             && diff_cuts(diff_4_cut->min_diff,diff_4_cut->max_diff,entangled)
@@ -570,22 +570,20 @@ void Create_mini_tree()
                 //#if UseNotEntangledPhotons
                 EdepIntermediate = short_channel_info[34].integral_in_gate;
                 //#endif
-                if ( channel_number == ch1 && channel_number_2 == ch2) 
-                {
+
                     mini_leaves.EdepScat0 = short_channel_info[32].integral_in_gate;
                     mini_leaves.EdepScat1 = short_channel_info[33].integral_in_gate;
                     mini_leaves.EdepDet0 = short_channel_info[ch1].integral_in_gate;
-                    mini_leaves.EdepDet1 = short_channel_info[ch2].integral_in_gate;
+                    //mini_leaves.EdepDet1 = short_channel_info[ch2].integral_in_gate;
                     mini_leaves.DetNum0 = ch1;
-                    mini_leaves.DetNum1 = ch2;  
+                    //mini_leaves.DetNum1 = ch2;  
                     mini_leaves.EdepIntermediate = EdepIntermediate;
                     mini_time.TimeScat0 = short_channel_info[32].peak_pos;
                     mini_time.TimeScat1 = short_channel_info[33].peak_pos;
                     mini_time.TimeDet0 = short_channel_info[ch1].peak_pos;
-                    mini_time.TimeDet1 = short_channel_info[ch2].peak_pos;
+                    //mini_time.TimeDet1 = short_channel_info[ch2].peak_pos;
                     mini_time.TimeIntermediate = short_channel_info[34].peak_pos;
                     short_tree-> Fill();
-                }
             }
         }
 

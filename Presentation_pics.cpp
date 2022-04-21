@@ -31,7 +31,7 @@ using namespace HistPeakToZero;
 
 void Presentation_pics()
 {
-    TString source_path = "/home/doc/entanglement/with_spline/entangled/";
+    TString source_path = "/home/doc/entanglement/with_spline/decoherent/";
     TH1F *shifted_nrg = new TH1F("shifted_nrg","",1,0,1);
     hist_like_ivashkin_wants_it(shifted_nrg,"Time [ns]", "Normalized Number of Events", 1);
     const Int_t total_channels = 35;
@@ -288,7 +288,10 @@ void Presentation_pics()
     /////Drawing GAGG and noise
     gagg_canv = new TCanvas("gagg_canv", "gagg_canv");
     gagg_hist = new TH1F("gagg_hist","gagg_hist", 290,10,300);
-    PMT_tree->Draw("channel_34.integral_in_gate >> gagg_hist","channel_34.peak_pos - channel_32.peak_pos < 80 && channel_34.peak_pos - channel_32.peak_pos > 40","",2*draw_events);
+    PMT_tree->Draw("channel_34.integral_in_gate >> gagg_hist","channel_34.peak_pos - channel_32.peak_pos < 80 && channel_34.peak_pos - channel_32.peak_pos > 40"
+    "&& diff_channel_34.min_diff < -7 && diff_channel_34.max_diff > 7","",2*draw_events);
+
+    
     hist_like_ivashkin_wants_it(gagg_hist,"Energy [keV]", "Normalized Number of Events", 1);
     gagg_hist->Scale(1/(gagg_hist->GetBinContent(gagg_hist->GetMaximumBin())));
     gagg_hist->SetTitle("");
